@@ -4,23 +4,22 @@ using UnityEngine;
 
 public class kelpBehaviour : MonoBehaviour
 {
-    // Animation parameters
-    public float waveSpeed = 0.5f;
-    public float waveAmplitude = 0.05f;
-    public float waveFrequency = 0.1f;
 
     public GameObject leafMeshPrefab;
+    public float leafRotationVariance = 2.0f;
 
     // Initial position of each bone
     private Vector3[] initialPositions;
     private GameObject[] leafMeshInstances;
     private Transform[] bones;
+    private float[] leafRotationOffset;
 
     void Start()
     {
         // Get the bones in the rig
         bones = GetComponentsInChildren<Transform>();
         leafMeshInstances = new GameObject[bones.Length];
+        leafRotationOffset = new float[bones.Length];
 
         // Store the initial position of each bone
         initialPositions = new Vector3[bones.Length];
@@ -30,6 +29,7 @@ public class kelpBehaviour : MonoBehaviour
 
             if (bones[i].name.Contains("Bone"))
             {
+                leafRotationOffset[i] = Random.Range(-leafRotationVariance, leafRotationVariance);
                 GameObject leafMeshInstance = Instantiate(leafMeshPrefab, bones[i].position, Quaternion.identity);
                 leafMeshInstance.transform.parent = bones[i];
                 leafMeshInstances[i] = leafMeshInstance;
@@ -47,7 +47,7 @@ public class kelpBehaviour : MonoBehaviour
             if (bones[i].name.Contains("Bone"))
             {
                 leafMeshInstances[i].transform.position = bones[i].position;
-                leafMeshInstances[i].transform.rotation = bones[i].rotation;
+                leafMeshInstances[i].transform.rotation = new Quaternion(bones[i].rotation.x, bones[i].rotation.y + leafRotationOffset[i], bones[i].rotation.z, bones[i].rotation.w);
             }
 
         }
