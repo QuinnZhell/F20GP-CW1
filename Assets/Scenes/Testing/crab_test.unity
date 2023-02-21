@@ -122,7 +122,7 @@ NavMeshSettings:
     preserveTilesOutsideBounds: 0
     debug:
       m_Flags: 0
-  m_NavMeshData: {fileID: 0}
+  m_NavMeshData: {fileID: 23800000, guid: cd25a4f4b94910b41a92b002f1902de3, type: 2}
 --- !u!4 &44594583 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1711813250521112334, guid: 14318f3089078de438904365fb3a4569, type: 3}
@@ -345,7 +345,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 1210191964}
     m_Modifications:
     - target: {fileID: -8970977343346679312, guid: 14318f3089078de438904365fb3a4569, type: 3}
       propertyPath: m_Name
@@ -353,19 +353,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 14318f3089078de438904365fb3a4569, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 14318f3089078de438904365fb3a4569, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 20.979206
+      value: 2.1340008
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 14318f3089078de438904365fb3a4569, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.38
+      value: -1.8399999
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 14318f3089078de438904365fb3a4569, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -29.183006
+      value: -1.4760056
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 14318f3089078de438904365fb3a4569, type: 3}
       propertyPath: m_LocalRotation.w
@@ -373,15 +373,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 14318f3089078de438904365fb3a4569, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 14318f3089078de438904365fb3a4569, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 14318f3089078de438904365fb3a4569, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 14318f3089078de438904365fb3a4569, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -456,8 +456,16 @@ PrefabInstance:
       value: CRAB
       objectReference: {fileID: 0}
     - target: {fileID: 1712011557463583528, guid: 14318f3089078de438904365fb3a4569, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1712011557463583528, guid: 14318f3089078de438904365fb3a4569, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.991
+      value: 2.858
+      objectReference: {fileID: 0}
+    - target: {fileID: 1712011557463583528, guid: 14318f3089078de438904365fb3a4569, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.66
       objectReference: {fileID: 0}
     - target: {fileID: 1712011557463583528, guid: 14318f3089078de438904365fb3a4569, type: 3}
       propertyPath: m_LocalRotation.w
@@ -531,6 +539,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: b5Tip
       objectReference: {fileID: 0}
+    - target: {fileID: 8879528566716807029, guid: 14318f3089078de438904365fb3a4569, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.99
+      objectReference: {fileID: 0}
+    - target: {fileID: 8879528566716807029, guid: 14318f3089078de438904365fb3a4569, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1.45
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 14318f3089078de438904365fb3a4569, type: 3}
 --- !u!4 &359642500 stripped
@@ -586,12 +602,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 2147483647
   body: {fileID: 2085490111}
+  agent: {fileID: 1210191964}
   leg: {fileID: 387843339}
   otherFoot: {fileID: 1864168664}
-  speed: 1
-  stepDistance: 2
-  stepLength: 1
-  stepHeight: 1
 --- !u!4 &430853995 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -5392849786703776046, guid: 14318f3089078de438904365fb3a4569, type: 3}
@@ -759,6 +772,11 @@ Transform:
   m_Father: {fileID: 877329005}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &744072105 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 14318f3089078de438904365fb3a4569, type: 3}
+  m_PrefabInstance: {fileID: 267824617}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &746788803 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2886440708280981855, guid: 14318f3089078de438904365fb3a4569, type: 3}
@@ -996,12 +1014,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 2147483647
   body: {fileID: 2085490111}
+  agent: {fileID: 1210191964}
   leg: {fileID: 1014502258}
   otherFoot: {fileID: 1791698096}
-  speed: 1
-  stepDistance: 2
-  stepLength: 1
-  stepHeight: 1
 --- !u!1 &1071383528
 GameObject:
   m_ObjectHideFlags: 0
@@ -1108,12 +1123,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 2147483647
   body: {fileID: 2085490111}
+  agent: {fileID: 1210191964}
   leg: {fileID: 1114993777}
   otherFoot: {fileID: 1128493932}
-  speed: 1
-  stepDistance: 2
-  stepLength: 1
-  stepHeight: 1
 --- !u!4 &1121780559 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4042550779052972342, guid: 14318f3089078de438904365fb3a4569, type: 3}
@@ -1213,12 +1225,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 2147483647
   body: {fileID: 2085490111}
+  agent: {fileID: 1210191964}
   leg: {fileID: 1128493931}
   otherFoot: {fileID: 1114993778}
-  speed: 1
-  stepDistance: 2
-  stepLength: 1
-  stepHeight: 1
 --- !u!4 &1141196371 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -2004084065605214396, guid: 14318f3089078de438904365fb3a4569, type: 3}
@@ -1234,6 +1243,77 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -512107697707990369, guid: 14318f3089078de438904365fb3a4569, type: 3}
   m_PrefabInstance: {fileID: 267824617}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1210191961
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1210191964}
+  - component: {fileID: 1210191966}
+  - component: {fileID: 1210191965}
+  m_Layer: 0
+  m_Name: CrabAgent
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1210191964
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1210191961}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 21.636, y: 0.45, z: -27.707}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 744072105}
+  m_Father: {fileID: 0}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1210191965
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1210191961}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b647d89e93632447817849555b1fbf0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  agent: {fileID: 1210191966}
+  range: 10
+  centrePoint: {fileID: 1210191964}
+--- !u!195 &1210191966
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1210191961}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 1
+  m_Acceleration: 4
+  avoidancePriority: 50
+  m_AngularSpeed: 20
+  m_StoppingDistance: 2
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!1 &1214740299
 GameObject:
   m_ObjectHideFlags: 0
@@ -1386,7 +1466,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!64 &1436355312
 MeshCollider:
@@ -1465,7 +1545,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1517882757 stripped
 Transform:
@@ -1623,12 +1703,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 2147483647
   body: {fileID: 2085490111}
+  agent: {fileID: 1210191964}
   leg: {fileID: 1791698095}
   otherFoot: {fileID: 1014502259}
-  speed: 1
-  stepDistance: 2
-  stepLength: 1
-  stepHeight: 1
 --- !u!1 &1864168662
 GameObject:
   m_ObjectHideFlags: 0
@@ -1677,12 +1754,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 2147483647
   body: {fileID: 2085490111}
+  agent: {fileID: 1210191964}
   leg: {fileID: 1864168663}
   otherFoot: {fileID: 387843340}
-  speed: 1
-  stepDistance: 2
-  stepLength: 1
-  stepHeight: 1
 --- !u!1 &1906890436
 GameObject:
   m_ObjectHideFlags: 0
@@ -1789,12 +1863,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 2147483647
   body: {fileID: 2085490111}
+  agent: {fileID: 1210191964}
   leg: {fileID: 1950826429}
   otherFoot: {fileID: 2096585825}
-  speed: 1
-  stepDistance: 2
-  stepLength: 1
-  stepHeight: 1
 --- !u!4 &2051205348 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 810943645698292839, guid: 14318f3089078de438904365fb3a4569, type: 3}
@@ -1986,7 +2057,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!1 &2096585823
 GameObject:
@@ -2036,12 +2107,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 2147483647
   body: {fileID: 2085490111}
+  agent: {fileID: 1210191964}
   leg: {fileID: 2096585824}
   otherFoot: {fileID: 1950826430}
-  speed: 1
-  stepDistance: 2
-  stepLength: 1
-  stepHeight: 1
 --- !u!4 &2138038973 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -3970548512267790098, guid: 14318f3089078de438904365fb3a4569, type: 3}

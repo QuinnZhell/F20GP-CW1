@@ -9,6 +9,7 @@ public class IKFootSolver : MonoBehaviour
 {
     [SerializeField] LayerMask terrainLayer = default;
     [SerializeField] Transform body = default;
+    [SerializeField] Transform agent = default;
     [SerializeField] Transform leg = default;
     [SerializeField] IKFootSolver otherFoot = default;
     private float speed = 4;
@@ -17,6 +18,7 @@ public class IKFootSolver : MonoBehaviour
     private float stepHeight = 0.5f;
     private Vector3 footOffset = default;
     private Vector3 legDir = default;
+    private float lastRotY = default;
     float footSpacing;
     Vector3 oldPosition, currentPosition, newPosition;
     Vector3 oldNormal, currentNormal, newNormal;
@@ -30,12 +32,20 @@ public class IKFootSolver : MonoBehaviour
         lerp = 1;
         footOffset = body.position - leg.position - Vector3.one;
         legDir = (leg.position - body.position).normalized;
+
+        lastRotY = agent.rotation.y;
+
     }
 
     // Update is called once per frame
 
     void Update()
     {
+        float rotYOffset = Mathf.Abs(agent.rotation.y) - Mathf.Abs(lastRotY);
+        lastRotY = agent.rotation.y;
+
+        legDir = Quaternion.Euler(0, rotYOffset, 0) * legDir;
+
         transform.position = currentPosition;
         transform.up = currentNormal;
 
@@ -71,8 +81,8 @@ public class IKFootSolver : MonoBehaviour
     private void OnDrawGizmos()
     {
 
-        //Gizmos.color = Color.red;
-        //Gizmos.DrawSphere(newPosition, 0.5f);
+        Gizmos.color = Color.red;
+        Gizmos.DrawSphere(newPosition, 0.5f);
     }
 
 
