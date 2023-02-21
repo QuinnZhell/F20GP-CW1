@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Enemy
   - Treasure
+  - Blip
   layers:
   - Default
   - TransparentFX
