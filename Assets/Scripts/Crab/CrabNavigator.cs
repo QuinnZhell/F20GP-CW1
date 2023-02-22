@@ -7,6 +7,7 @@ public class CrabNavigator : MonoBehaviour
 {
     public NavMeshAgent agent;
     public Transform player = default;
+    public Transform centerPoint = default;
     public float minPlayerDistance = 10.0f;
     public float range; 
 
@@ -29,17 +30,17 @@ public class CrabNavigator : MonoBehaviour
         else if(agent.remainingDistance <= agent.stoppingDistance) 
         {
             Vector3 point;
-            if (RandomPoint(range, out point)) 
+            if (RandomPoint(centerPoint, range, out point)) 
             {
                 agent.SetDestination(point); // GO IN RANDOM DIRECTION
             }
         }
 
     }
-    bool RandomPoint(float range, out Vector3 result)
+    bool RandomPoint(Transform center, float range, out Vector3 result)
     {
 
-        Vector3 randomPoint = Random.insideUnitSphere * range; 
+        Vector3 randomPoint = center.position + Random.insideUnitSphere * range; 
         NavMeshHit hit;
         if (NavMesh.SamplePosition(randomPoint, out hit, 1.0f, NavMesh.AllAreas))
         { 
