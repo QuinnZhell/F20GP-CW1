@@ -12,10 +12,15 @@ public class kelpBehaviour : MonoBehaviour
     private Vector3[] initialPositions;
     private GameObject[] leafMeshInstances;
     private Transform[] bones;
+    private Rigidbody[] rigidBodies;
+    private Vector3 swayDirection;
     private float[] leafRotationOffset;
 
     void Start()
     {
+        rigidBodies = GetComponentsInChildren<Rigidbody>();
+        swayDirection = Quaternion.Euler(0, 45, 0) * transform.up;
+
         // Get the bones in the rig
         bones = GetComponentsInChildren<Transform>();
         leafMeshInstances = new GameObject[bones.Length];
@@ -50,6 +55,11 @@ public class kelpBehaviour : MonoBehaviour
                 leafMeshInstances[i].transform.rotation = new Quaternion(bones[i].rotation.x, bones[i].rotation.y + leafRotationOffset[i], bones[i].rotation.z, bones[i].rotation.w);
             }
 
+        }
+
+        for(int i = 0; i < rigidBodies.Length; i++){
+            Vector3 randomRotation = Quaternion.Euler(Random.Range(-1.0f, 1.0f), Random.Range(-1.0f, 1.0f), Random.Range(-1.0f, 1.0f)) * transform.up * (0.1f * i);
+            rigidBodies[i].AddForce((swayDirection + randomRotation) * 0.00000001f);
         }
     }
 }
