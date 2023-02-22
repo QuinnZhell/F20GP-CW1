@@ -41,7 +41,7 @@ public class IKFootSolver : MonoBehaviour
 
     void Update()
     {
-        float rotYOffset = Mathf.Abs(agent.rotation.y) - Mathf.Abs(lastRotY);
+        float rotYOffset = Mathf.Clamp(Mathf.Abs(agent.rotation.y) - Mathf.Abs(lastRotY), -1, 1);
         lastRotY = agent.rotation.y;
 
         legDir = Quaternion.Euler(0, rotYOffset, 0) * legDir;

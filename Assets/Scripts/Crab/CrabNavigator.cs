@@ -6,38 +6,43 @@ using UnityEngine.AI;
 public class CrabNavigator : MonoBehaviour 
 {
     public NavMeshAgent agent;
+    public Transform player = default;
+    public float minPlayerDistance = 10.0f;
     public float range; 
-
-    public Transform centrePoint; 
 
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
     }
-
     
     void Update()
     {
-        if(agent.remainingDistance <= agent.stoppingDistance) //done with path
+        Vector3 playerPosition = player.position;
+        Vector3 agentPosition = agent.transform.position;
+
+        Vector3 playerDirection = (playerPosition - agentPosition).normalized;
+        float playerDistance = Vector3.Distance(playerPosition, agentPosition);
+
+        if(playerDistance <= minPlayerDistance){
+            agent.SetDestination(-playerDirection * range); // RUN AWAY
+        }
+        else if(agent.remainingDistance <= agent.stoppingDistance) 
         {
             Vector3 point;
-            if (RandomPoint(centrePoint.position, range, out point)) //pass in our centre point and radius of area
+            if (RandomPoint(range, out point)) 
             {
-                Debug.DrawRay(point, Vector3.up, Color.blue, 1.0f); //so you can see with gizmos
-                agent.SetDestination(point);
+                agent.SetDestination(point); // GO IN RANDOM DIRECTION
             }
         }
 
     }
-    bool RandomPoint(Vector3 center, float range, out Vector3 result)
+    bool RandomPoint(float range, out Vector3 result)
     {
 
-        Vector3 randomPoint = center + Random.insideUnitSphere * range; //random point in a sphere 
+        Vector3 randomPoint = Random.insideUnitSphere * range; 
         NavMeshHit hit;
-        if (NavMesh.SamplePosition(randomPoint, out hit, 1.0f, NavMesh.AllAreas)) //documentation: https://docs.unity3d.com/ScriptReference/AI.NavMesh.SamplePosition.html
+        if (NavMesh.SamplePosition(randomPoint, out hit, 1.0f, NavMesh.AllAreas))
         { 
-            //the 1.0f is the max distance from the random point to a point on the navmesh, might want to increase if range is big
-            //or add a for loop like in the documentation
             result = hit.position;
             return true;
         }
