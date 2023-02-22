@@ -7,7 +7,8 @@ public class Radar : MonoBehaviour
     Transform player;
     Transform radar;
     Transform canvas;
-    float radarRange = 10f;
+    float radarRange = 30f;
+    float radarScale;
     [Header ("Blip Prefabs")]
     public GameObject sharkBlip;
     public GameObject treasureBlip;
@@ -18,6 +19,7 @@ public class Radar : MonoBehaviour
         radar = this.transform;
         player = GameObject.Find("Player").transform;
         canvas = GameObject.Find("UI").transform;
+        radarScale = 50 / radarRange;
     }
 
     // Update is called once per frame
@@ -62,15 +64,22 @@ public class Radar : MonoBehaviour
     Vector2 CalculateRadarPosition(Vector3 pos) {
 
         // scale position
-        float x = pos.x * 5;
-        float y = pos.z * 5;
+        float x = pos.x * radarScale;
+        float y = pos.z * radarScale;
 
         // player position is taken as origin so rotation is around y
-        float r = player.rotation.y;
+        float r = player.rotation.eulerAngles.y;
+        // change to degrees
+        r = r * (Mathf.PI/180);
+
+        Debug.Log("Rotation around origin: " + r);
 
         // player is considered origin in radar
         float blipX = x * Mathf.Cos(r) - y * Mathf.Sin(r);
         float blipY = y * Mathf.Cos(r) + x * Mathf.Sin(r);
+
+        Debug.Log("scaled:" + x + " , " + y);
+        Debug.Log("rotated:" + blipX + " , " + blipY);
 
         return new Vector2(blipX, blipY);
     }
