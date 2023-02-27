@@ -1207,6 +1207,10 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 646382188}
+    - target: {fileID: 6353908510396885460, guid: c998ed0aba1248049b3196d1f30105c6, type: 3}
+      propertyPath: m_AngularSpeed
+      value: 150
+      objectReference: {fileID: 0}
     - target: {fileID: 6353908510396885462, guid: c998ed0aba1248049b3196d1f30105c6, type: 3}
       propertyPath: m_Name
       value: Shark

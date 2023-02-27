@@ -38,8 +38,6 @@ public class sharkBehaviour : MonoBehaviour
         defaultBaseOffset = agent.baseOffset;
         defaultSpeed = agent.speed;
 
-        
-
         distanceToPlayer = Vector3.Distance(player.position, agent.transform.position);
     }
 
@@ -72,6 +70,13 @@ public class sharkBehaviour : MonoBehaviour
     {
         Debug.Log("PATROL");
 
+        if(agent.transform.position.y > defaultBaseOffset + 1) {
+            agent.baseOffset -= 0.001f;
+        }
+        else if (agent.transform.position.y < defaultBaseOffset + 1) {
+            agent.baseOffset += 0.001f;
+        }
+
         agent.speed = defaultSpeed;
         Vector3 agentPosition = agent.transform.position;
 
@@ -93,6 +98,16 @@ public class sharkBehaviour : MonoBehaviour
         Debug.Log("CHASE");
 
         agent.speed = chaseSpeed;
+
+        if(Mathf.Abs(player.position.y - agent.transform.position.y) > 0.5f){
+            if(player.position.y > agent.transform.position.y) {
+                agent.baseOffset += 0.001f;
+            }
+            else if (player.position.y < agent.transform.position.y) {
+                agent.baseOffset -= 0.001f;
+            }
+        }
+
         agent.SetDestination(player.position);
     }
 
