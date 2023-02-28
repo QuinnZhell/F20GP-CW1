@@ -18,7 +18,7 @@ public class Radar : MonoBehaviour
     {
         radar = this.transform;
         player = GameObject.Find("Player").transform;
-        canvas = GameObject.Find("UI").transform;
+        canvas = GameObject.Find("UserInterface").transform;
         radarScale = 50 / radarRange;
     }
 
@@ -72,14 +72,14 @@ public class Radar : MonoBehaviour
         // change to degrees
         r = r * (Mathf.PI/180);
 
-        Debug.Log("Rotation around origin: " + r);
+        //Debug.Log("Rotation around origin: " + r);
 
         // player is considered origin in radar
         float blipX = x * Mathf.Cos(r) - y * Mathf.Sin(r);
         float blipY = y * Mathf.Cos(r) + x * Mathf.Sin(r);
 
-        Debug.Log("scaled:" + x + " , " + y);
-        Debug.Log("rotated:" + blipX + " , " + blipY);
+        //Debug.Log("scaled:" + x + " , " + y);
+        //Debug.Log("rotated:" + blipX + " , " + blipY);
 
         return new Vector2(blipX, blipY);
     }
