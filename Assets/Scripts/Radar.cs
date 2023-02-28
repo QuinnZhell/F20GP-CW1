@@ -26,7 +26,7 @@ public class Radar : MonoBehaviour
     void Update()
     {
         DestroyBlips();
-        Scan("Enemy", sharkBlip);
+        Scan("Shark", sharkBlip);
         Scan("Treasure", treasureBlip);
     }
 
