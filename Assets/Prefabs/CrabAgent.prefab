@@ -129,7 +129,7 @@ Transform:
   m_GameObject: {fileID: 4267016643351973794}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 21.636, y: 0.45, z: -27.707}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4376870444171875833}
@@ -172,6 +172,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   agent: {fileID: 4267016643351973797}
   player: {fileID: 0}
+  centerPoint: {fileID: 0}
   minPlayerDistance: 10
   range: 10
 --- !u!1 &4267016643355994288

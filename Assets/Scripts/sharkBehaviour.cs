@@ -10,6 +10,7 @@ public class sharkBehaviour : MonoBehaviour
     public Transform player;
 
     public LayerMask playerMask;
+    public GameManager gameManager;
 
     private float distanceToPlayer;
 
@@ -22,10 +23,10 @@ public class sharkBehaviour : MonoBehaviour
     // chase
     public float minSpottedDistance = 15.0f;
     public bool playerSpotted = false;
-    public float chaseSpeed = 6.0f;
+    public float chaseSpeed = 7.0f;
 
     // attack
-    public float minAttackDistance = 5.0f;
+    public float minAttackDistance = 8.0f;
     public bool attackTriggered = false;
 
     // evade
@@ -38,6 +39,8 @@ public class sharkBehaviour : MonoBehaviour
         defaultBaseOffset = agent.baseOffset;
         defaultSpeed = agent.speed;
 
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+
         distanceToPlayer = Vector3.Distance(player.position, agent.transform.position);
     }
 
@@ -47,10 +50,15 @@ public class sharkBehaviour : MonoBehaviour
 
         distanceToPlayer = Vector3.Distance(player.position, agent.transform.position);
 
+        // remove triggers when far away
         if(distanceToPlayer > minSpottedDistance * evadeDistanceMultiplier) {
             evadeTriggered = false;
             attackTriggered = false;
-        } 
+        }
+        // this allows the shark to continue evading if for some reason the player is chasing
+        else if(evadeTriggered) {
+            Evade();
+        }
 
         playerSpotted = Physics.CheckSphere(transform.position, minSpottedDistance, playerMask);
         attackTriggered = Physics.CheckSphere(transform.position, minAttackDistance, playerMask);
@@ -115,13 +123,18 @@ public class sharkBehaviour : MonoBehaviour
     {
         Debug.Log("ATTACK");
 
+        agent.speed = 0;
         attackTriggered = true;
+        gameManager.applyDamage(34.0f);
+
         Evade();
     }
 
     void Evade()
     {
         Debug.Log("EVADE");
+
+        agent.speed = chaseSpeed;
 
         attackTriggered = false;
         evadeTriggered = true;
