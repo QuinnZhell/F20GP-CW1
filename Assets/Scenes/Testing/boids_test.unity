@@ -37102,7 +37102,7 @@ MonoBehaviour:
   _cohesion: 5
   _alignment: 2
   _avoidance: 2
-  _minSpeed: 1
+  _minSpeed: 4
   _maxSpeed: 2
 --- !u!4 &883234833
 Transform:
@@ -37840,7 +37840,7 @@ MonoBehaviour:
   _cohesion: 5
   _alignment: 2
   _avoidance: 2
-  _minSpeed: 1
+  _minSpeed: 4
   _maxSpeed: 2
 --- !u!4 &1539889962
 Transform:
