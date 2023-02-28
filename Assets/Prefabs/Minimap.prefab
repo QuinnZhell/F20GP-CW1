@@ -50,6 +50,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7037e4d933a684346b5a11b825b892d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sharkBlip: {fileID: 6658553173788641095, guid: 42612a48f8c9a694bb5064f77b04b8fe, type: 3}
+  treasureBlip: {fileID: 4818347865571372022, guid: ddaf41b8272442c42844a5ecdabe3e99, type: 3}
 --- !u!1 &9166902312421196898
 GameObject:
   m_ObjectHideFlags: 0
