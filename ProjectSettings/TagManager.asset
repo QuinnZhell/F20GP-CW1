@@ -7,6 +7,7 @@ TagManager:
   - Enemy
   - Treasure
   - Blip
+  - Fish
   layers:
   - Default
   - TransparentFX
@@ -14,10 +15,9 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
-  - 
-  - 
+  - Player
+  - Obstacle
+  - Fish Boids
   - Minimap
   - 
   - 
