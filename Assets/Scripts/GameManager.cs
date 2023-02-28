@@ -25,8 +25,6 @@ public class GameManager : MonoBehaviour
         currentHealth = currentHealth - damage;
         if (currentHealth < 0) currentHealth = 0;
 
-        Debug.Log(currentHealth);
-
         // DEATH LOGIC 
     }
 }

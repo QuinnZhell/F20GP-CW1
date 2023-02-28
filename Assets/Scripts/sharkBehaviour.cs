@@ -10,7 +10,7 @@ public class sharkBehaviour : MonoBehaviour
     public Transform player;
 
     public LayerMask playerMask;
-    public GameManager gameManager;
+    private GameManager gameManager;
 
     private float distanceToPlayer;
 
@@ -60,6 +60,7 @@ public class sharkBehaviour : MonoBehaviour
             Evade();
         }
 
+        // check distance between player and shark
         playerSpotted = Physics.CheckSphere(transform.position, minSpottedDistance, playerMask);
         attackTriggered = Physics.CheckSphere(transform.position, minAttackDistance, playerMask);
 
@@ -76,8 +77,8 @@ public class sharkBehaviour : MonoBehaviour
 
     void Patrol()
     {
-        Debug.Log("PATROL");
 
+        // shark should return to its default depth when not chasing
         if(agent.transform.position.y > defaultBaseOffset + 1) {
             agent.baseOffset -= 0.001f;
         }
@@ -91,6 +92,7 @@ public class sharkBehaviour : MonoBehaviour
         Vector3 playerDirection = (player.position - agentPosition).normalized;
         float playerDistance = Vector3.Distance(player.position, agentPosition);
 
+        // if shark has reached its point, find new point
         if(agent.remainingDistance <= agent.stoppingDistance) 
         {
             Vector3 point;
@@ -103,10 +105,9 @@ public class sharkBehaviour : MonoBehaviour
 
     void Chase()
     {
-        Debug.Log("CHASE");
-
         agent.speed = chaseSpeed;
 
+        // move to the players elevation if it differs from the shark
         if(Mathf.Abs(player.position.y - agent.transform.position.y) > 0.5f){
             if(player.position.y > agent.transform.position.y) {
                 agent.baseOffset += 0.001f;
@@ -121,24 +122,23 @@ public class sharkBehaviour : MonoBehaviour
 
     void Attack()
     {
-        Debug.Log("ATTACK");
 
         agent.speed = 0;
         attackTriggered = true;
         gameManager.applyDamage(34.0f);
 
+        // shark evades after each hit
         Evade();
     }
 
     void Evade()
     {
-        Debug.Log("EVADE");
-
         agent.speed = chaseSpeed;
 
         attackTriggered = false;
         evadeTriggered = true;
 
+        // find direction opposite player, and move away
         Vector3 agentPosition = agent.transform.position;
         Vector3 playerDirection = (player.position - agentPosition).normalized;
         
