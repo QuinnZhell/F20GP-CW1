@@ -20,8 +20,8 @@ using UnityEngine;
     private List<Fish> cohesionNeighbours = new List<Fish>();
     private List<Fish> avoidNeighbours = new List<Fish>();
     private List<Fish> alignNeighbours = new List<Fish>();
-    private LayerMask fish_mask;
-    private LayerMask obstacle_mask;
+    private int fish_mask;
+    private int obstacle_mask;
     private float SphereCastRadius;
                                         // left, right, up, down
     private Vector3[] altDirections = {new Vector3(-1,0,1), new Vector3(1,0,1), new Vector3(0,1,1), new Vector3(0,-1,1)};
