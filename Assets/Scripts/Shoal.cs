@@ -23,6 +23,12 @@ public class Shoal : MonoBehaviour
     public float minSpeed {get {return _minSpeed;}}
     [Range(0,10)] [SerializeField] private float _maxSpeed;
     public float maxSpeed {get {return _maxSpeed;}}
+    
+    private float fishFOV;
+
+    void Awake() {
+        fishFOV = Mathf.Max(_cohesion, Mathf.Max(_alignment, _avoidance));
+    }
 
     // Start is called before the first frame update
     void Start() {
@@ -47,6 +53,7 @@ public class Shoal : MonoBehaviour
             var randomRotation = Quaternion.Euler(0, UnityEngine.Random.Range(0, 360), 0);
             shoalMembers[i] = Instantiate(fishPrefab, spawnPosition, randomRotation);
             shoalMembers[i].SetShoal(this);
+            shoalMembers[i].SetSphereCastRadius(fishFOV);
             shoalMembers[i].InitializeSpeed(UnityEngine.Random.Range(minSpeed, maxSpeed));
         }
     }
