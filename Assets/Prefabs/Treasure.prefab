@@ -9,6 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7745026170418320392}
+  - component: {fileID: 4631462620405732113}
+  - component: {fileID: 6217414106221036658}
   m_Layer: 0
   m_Name: Treasure
   m_TagString: Treasure
@@ -32,6 +34,33 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4631462620405732113
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7745026170418320395}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6da5215a5a0113145bc1c37a2ffceeca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text: Press "E" to Collect
+  display: {fileID: 0}
+--- !u!135 &6217414106221036658
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7745026170418320395}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &8120266454962683558
 GameObject:
   m_ObjectHideFlags: 0
@@ -43,8 +72,6 @@ GameObject:
   - component: {fileID: 8596784808602971900}
   - component: {fileID: 2367834807979950213}
   - component: {fileID: 8140075721732111761}
-  - component: {fileID: 8064558219863659241}
-  - component: {fileID: 5081897123307464077}
   m_Layer: 0
   m_Name: Sphere
   m_TagString: Untagged
@@ -117,30 +144,3 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &8064558219863659241
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8120266454962683558}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 5
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &5081897123307464077
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8120266454962683558}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6da5215a5a0113145bc1c37a2ffceeca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  text: Press "E" to Collect
-  UI: {fileID: 0}
