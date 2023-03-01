@@ -14,6 +14,9 @@ public class PlayerMovement : MonoBehaviour
     public float sprintSpeed = 4f;
     private bool isSprinting = false;
 
+    private bool isSwimming;
+    [SerializeField] LayerMask waterMask;
+
     // Start is called before the first frame update
     void Start()
     {
