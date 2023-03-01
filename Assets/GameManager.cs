@@ -38,5 +38,6 @@ public class GameManager : MonoBehaviour
 
     public void SetActiveDoor(Door door) {
         vaultDoor = door;
+        vaultDoor.locked = true;
     }
 }

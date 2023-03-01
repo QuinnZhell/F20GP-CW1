@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Door : Interactable
 {
-    public bool locked = true;
+    [SerializeField] public bool locked = true;
     private bool opening = false;
 
     private void Awake() {
