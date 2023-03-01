@@ -20,11 +20,11 @@ One of the primary reasons for choosing an underwater theme for this game was ab
 
 ## Path Planning
 
-# NavMesh
+## NavMesh
 
 Besides shoals of fish, all other creature/enemy types in this game are nav mesh agents and therefore use a navmesh to navigate.
 
-## Shark
+### Shark
 
 Due to the shark enemy technically being a "flying" enemy, this posed an issue with navmesh navigation. An issue worked around by using the baseOffset property of the NavMeshAgent component, which allowed for the actual "agent" to stay on the floor, while the shark model could remain at a set distance above. Again, this posed the issue that the player may be on a different elevation, to this, the shark will gradually increase or decrease its baseOffset property while chasing or attacking the player, then returns to its default elevation while patrolling.
 
@@ -38,11 +38,11 @@ Attack - During a chase, when the shark comes within an even shorter distance of
 
 Evade - Between each attack, the shark will evade, allowing the player a chance to find safety. The evade behaviour can be described as the shark facing in the polar opposite direction of the player, and swimming off in a faster-than-usual pace.
 
-## Crabs
+### Crabs
 
 Similar to the shark, the crab will choose a random point on a navmesh, and walk towards it, the only difference being that the crab moves to a random point within a certain range of a declared center point, which we use as a helpful hint to tell the player where the treasure can be found. When the player gets too close, it will evade using the same behaviour as the shark.
 
-# Win/Lose Conditions
+## Win/Lose Conditions
 
 The player may only win once they have collected all 5 treasure chests on the map, which then unlocks a door to a secret tunnel within the temple. The player must navigate through this tunnel where they will be presented with a mini-boss fight, to which once they beat it, another treasure chest will be spawned and the player will be transported to a "mission successful" scene.
 
