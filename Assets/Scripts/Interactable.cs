@@ -5,7 +5,7 @@ using UnityEngine;
 public class Interactable : MonoBehaviour
 {
     [SerializeField] protected string text;
-    protected bool interactive = false;
+    [SerializeField] protected bool interactive = false;
     [SerializeField] protected UserInterface display;
     [SerializeField] protected GameManager gameManager;
 
@@ -15,12 +15,16 @@ public class Interactable : MonoBehaviour
     }
 
     public virtual void OnTriggerEnter(Collider other) {
-        display.ShowPrompt(text);
-        interactive = true;
+        if(other.name == "Player"){
+            display.ShowPrompt(text);
+            interactive = true;
+        }
     }
     public virtual void OnTriggerExit(Collider other) {
-        display.ShowPrompt("");
-        interactive = false;
+        if(other.name == "Player"){
+            display.ShowPrompt("");
+            interactive = false;
+        }
     }
 
     protected virtual void Remove(){
