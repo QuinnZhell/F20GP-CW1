@@ -77,7 +77,6 @@ public class sharkBehaviour : MonoBehaviour
 
     void Patrol()
     {
-
         // shark should return to its default depth when not chasing
         if(agent.transform.position.y > defaultBaseOffset + 1) {
             agent.baseOffset -= 0.001f;
@@ -105,6 +104,7 @@ public class sharkBehaviour : MonoBehaviour
 
     void Chase()
     {
+
         agent.speed = chaseSpeed;
 
         // move to the players elevation if it differs from the shark
@@ -122,7 +122,6 @@ public class sharkBehaviour : MonoBehaviour
 
     void Attack()
     {
-
         agent.speed = 0;
         attackTriggered = true;
         gameManager.applyDamage(34.0f);
@@ -148,7 +147,7 @@ public class sharkBehaviour : MonoBehaviour
     bool RandomPoint(float range, out Vector3 result)
     {
 
-        Vector3 randomPoint = Random.insideUnitSphere * range; 
+        Vector3 randomPoint = transform.position + Random.insideUnitSphere * range; 
         NavMeshHit hit;
         if (NavMesh.SamplePosition(randomPoint, out hit, 1.0f, NavMesh.AllAreas))
         { 
