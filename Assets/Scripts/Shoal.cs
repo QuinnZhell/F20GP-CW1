@@ -6,22 +6,22 @@ public class Shoal : MonoBehaviour
 {
     [Header ("Settings")]
     [SerializeField] private Fish fishPrefab;
-    [SerializeField] private int shoalPop;
+    [SerializeField] private int shoalPop = 60;
     [SerializeField] private Vector3 spawnBounds;
     public Fish[] shoalMembers {get; set;}
 
     [Header ("Steering Behaviours")]
-    [Range(0,10)] [SerializeField] private float _cohesion;
+    [Range(0,10)] [SerializeField] private float _cohesion = 9.0f;
     public float getCohesion { get {return _cohesion;}}
-    [Range(0,10)] [SerializeField] private float _alignment;
+    [Range(0,10)] [SerializeField] private float _alignment = 9.0f;
     public float getAlignment { get {return _alignment;}}
-    [Range(0,10)] [SerializeField] private float _avoidance;
+    [Range(0,10)] [SerializeField] private float _avoidance = 2.0f;
     public float getAvoidance { get {return _avoidance;}}
 
     [Header ("Speed Settings")]
-    [Range(0,10)] [SerializeField] private float _minSpeed;
+    [Range(0,10)] [SerializeField] private float _minSpeed = 3;
     public float minSpeed {get {return _minSpeed;}}
-    [Range(0,10)] [SerializeField] private float _maxSpeed;
+    [Range(0,10)] [SerializeField] private float _maxSpeed = 4;
     public float maxSpeed {get {return _maxSpeed;}}
     
     private float fishFOV;
@@ -44,11 +44,12 @@ public class Shoal : MonoBehaviour
 
     private void GenerateUnits() {
         shoalMembers = new Fish[shoalPop];
+        int positionOffset = shoalPop / 3;
 
         // instantiate fish in the shoal at random points in the boundaries
         for (int i = 0; i < shoalPop; i++) {
             var randomVector = UnityEngine.Random.insideUnitSphere;
-            randomVector = new Vector3(randomVector.x * spawnBounds.x, randomVector.y * spawnBounds.y, randomVector.z * spawnBounds.z);
+            randomVector = new Vector3(randomVector.x * spawnBounds.x + i%positionOffset, randomVector.y * spawnBounds.y + i%positionOffset, randomVector.z * spawnBounds.z + i%positionOffset);
             var spawnPosition = transform.position + randomVector;
             var randomRotation = Quaternion.Euler(0, UnityEngine.Random.Range(0, 360), 0);
             shoalMembers[i] = Instantiate(fishPrefab, spawnPosition, randomRotation);
