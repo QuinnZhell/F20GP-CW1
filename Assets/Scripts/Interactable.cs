@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class Interactable : MonoBehaviour
 {
-    [SerializeField] private string text;
+    [SerializeField] protected string text;
     protected bool interactive = false;
     [SerializeField] protected UserInterface display;
+    [SerializeField] protected GameManager gameManager;
 
-    private void Awake() {
+    private void Start() {
         display = FindObjectOfType<UserInterface>();
+        gameManager = FindAnyObjectByType<GameManager>();
     }
 
     public virtual void OnTriggerEnter(Collider other) {

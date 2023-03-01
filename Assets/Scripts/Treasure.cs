@@ -12,7 +12,7 @@ public class Treasure : Interactable
     }
 
     private void Collect() {
-        display.TreasureCollect();
+        gameManager.TreasureCollected();
         Remove();
     }
 }
