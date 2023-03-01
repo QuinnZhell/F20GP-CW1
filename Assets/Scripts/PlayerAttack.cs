@@ -28,13 +28,25 @@ public class PlayerAttack : MonoBehaviour
         StartCoroutine(AttackAnimate());
         
         RaycastHit hit;
-        if(Physics.SphereCast(player.transform.position, 1, player.transform.forward, out hit, 1)) {
-            Debug.Log(hit.collider.name);
+        if(Physics.SphereCast(player.transform.position, 1, player.transform.forward, out hit, 1.25f)) {
+            switch(hit.collider.tag) {
+                case "Shark":
+                    Debug.Log("Shark Smacked");
+                    hit.collider.GetComponent<sharkBehaviour>().Hurt();
+                    break;
+                default:
+                    break;
+            }
         }
 
         // player is unable to 'spam' the attack button
         yield return new WaitForSeconds(1);
         attacking = false;
+    }
+
+    private void OnDrawGizmosSelected() {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(player.transform.position + player.transform.forward * 1.25f, 1);
     }
 
     // Displays a visual indicator of the players attack radius
