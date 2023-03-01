@@ -8,8 +8,9 @@ public class UserInterface : MonoBehaviour
     [SerializeField] private TextMeshProUGUI prompt;
     [SerializeField] private TextMeshProUGUI treasureText;
 
-    // treasures collected
-    int treasureCount = 0;
+    private void Awake() {
+        FindAnyObjectByType<GameManager>().SetActiveUI(this);
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -27,8 +28,7 @@ public class UserInterface : MonoBehaviour
         prompt.text = text;
     }
 
-    public void TreasureCollect() {
-        treasureCount++;
-        treasureText.text = "Treasure Collected: " + treasureCount + "/ 5";
+    public void TreasureCollect(int count) {
+        treasureText.text = "Treasure Collected: " + count + "/ 5";
     }
 }
