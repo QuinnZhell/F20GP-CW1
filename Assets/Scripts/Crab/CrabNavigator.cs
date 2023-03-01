@@ -18,6 +18,9 @@ public class CrabNavigator : MonoBehaviour
     
     void Update()
     {
+        if(!centerPoint) {
+            centerPoint = transform;
+        }
         Vector3 playerPosition = player.position;
         Vector3 agentPosition = agent.transform.position;
 
