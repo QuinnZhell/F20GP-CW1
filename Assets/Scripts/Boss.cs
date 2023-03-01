@@ -4,29 +4,38 @@ using UnityEngine;
 
 public class Boss : MonoBehaviour
 {
+    bool active = false;
     int eyesRemaining = 3;
     [SerializeField] List<BossEye> eyes;
+    [SerializeField] GameObject treasure;
+    [SerializeField] GameManager gm;
 
     enum FirePattern {fire1, fire2, fire3};
     FirePattern firing = FirePattern.fire1;
-
     float timer = 0f;
     int activeEye = 0;
+    
 
     private void Update() {
-        timer += Time.deltaTime;
+        if(active){
+            timer += Time.deltaTime;
         
-        switch (firing) {
-            case FirePattern.fire1:
-                FirePattern1();
-                break;
-            case FirePattern.fire2:
-                FirePattern2();
-                break;
-            case FirePattern.fire3:
-                FirePattern3();
-                break;
-        }
+            switch (firing) {
+                case FirePattern.fire1:
+                    FirePattern1();
+                    break;
+                case FirePattern.fire2:
+                    FirePattern2();
+                    break;
+                case FirePattern.fire3:
+                    FirePattern3();
+                    break;
+            }
+        }   
+    }
+
+    public void Activate() {
+        active = true;
     }
 
     void FirePattern1() {
@@ -80,9 +89,11 @@ public class Boss : MonoBehaviour
 
         // make sure no lingering projectiles
         BossProjectile[] remaining = FindObjectsOfType<BossProjectile>();
-        foreach(BossProjectile projectile in remaining)
+        foreach(BossProjectile projectile in remaining) {
             Destroy(projectile.gameObject);
+        }
 
+        gm.WinOrLose(3);
         Destroy(gameObject);
     }
 }

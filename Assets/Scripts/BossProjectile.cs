@@ -8,9 +8,11 @@ public class BossProjectile : MonoBehaviour
     Vector3 target;
     PlayerCamera player;
     float timer = 0f;
+    GameManager gm;
 
     private void Awake() {
         player = FindAnyObjectByType<PlayerCamera>();
+        gm = FindAnyObjectByType<GameManager>();
         target = player.transform.position;
     }
 
@@ -31,6 +33,7 @@ public class BossProjectile : MonoBehaviour
         switch (other.tag) {
             case "Player":
                 Debug.Log("Player took damage");
+                gm.applyDamage(10.0f);
                 Destroy(gameObject);
                 break;
             case "PlayerAttack":

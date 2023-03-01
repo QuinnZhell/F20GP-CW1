@@ -102,6 +102,9 @@ using UnityEngine;
         isSwimming = true;
         RenderSettings.fogColor = new Color32(49,127,171,255);
         RenderSettings.fogDensity = 0.015f;
+
+        moveSpeed = 5f;
+        sprintSpeed = 8f;
     }
 
     public void StartWalking() {
@@ -110,5 +113,8 @@ using UnityEngine;
         isSwimming = false;
         RenderSettings.fogColor = new Color32(0,0,0,255);
         RenderSettings.fogDensity = 0.1f;
+
+        moveSpeed = 2.5f;
+        sprintSpeed = 4f;
     }
 }
