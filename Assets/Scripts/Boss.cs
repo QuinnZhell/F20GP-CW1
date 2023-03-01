@@ -7,11 +7,14 @@ public class Boss : MonoBehaviour
     bool active = false;
     int eyesRemaining = 3;
     [SerializeField] List<BossEye> eyes;
+    [SerializeField] GameObject treasure;
+    [SerializeField] GameManager gm;
 
     enum FirePattern {fire1, fire2, fire3};
     FirePattern firing = FirePattern.fire1;
     float timer = 0f;
     int activeEye = 0;
+    
 
     private void Update() {
         if(active){
@@ -86,9 +89,11 @@ public class Boss : MonoBehaviour
 
         // make sure no lingering projectiles
         BossProjectile[] remaining = FindObjectsOfType<BossProjectile>();
-        foreach(BossProjectile projectile in remaining)
+        foreach(BossProjectile projectile in remaining) {
             Destroy(projectile.gameObject);
+        }
 
+        gm.WinOrLose(3);
         Destroy(gameObject);
     }
 }

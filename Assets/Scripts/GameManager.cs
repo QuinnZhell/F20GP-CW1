@@ -16,18 +16,7 @@ public class GameManager : MonoBehaviour
 
     private void Awake() {
         treasureCollected = 0;
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
         currentHealth = maxHealth;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     public void applyDamage(float damage) {
@@ -35,14 +24,14 @@ public class GameManager : MonoBehaviour
         UI.SetHealth((int)(currentHealth > 0 ? currentHealth : 0));
 
         if (currentHealth < 0) {
-            Death();
+            WinOrLose(2);
         } 
     }
 
-    public void Death() {
+    public void WinOrLose(int i) {
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
-        SceneManager.LoadScene(2);
+        SceneManager.LoadScene(i);
     }
 
     public void TreasureCollected() {
@@ -51,6 +40,10 @@ public class GameManager : MonoBehaviour
 
         if(treasureCollected == 5)
             vaultDoor.Unlock();
+
+        if(treasureCollected > 5) {
+            WinOrLose(3);
+        }
     }
 
     public void SetActiveUI(UserInterface ui) {
@@ -59,6 +52,5 @@ public class GameManager : MonoBehaviour
 
     public void SetActiveDoor(Door door) {
         vaultDoor = door;
-        vaultDoor.locked = false;
     }
 }
