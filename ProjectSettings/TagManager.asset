@@ -9,6 +9,7 @@ TagManager:
   - Blip
   - Fish
   - Shark
+  - PlayerAttack
   layers:
   - Default
   - TransparentFX
