@@ -4,15 +4,23 @@ using UnityEngine;
 
 public class Boss : MonoBehaviour
 {
-    bool active = false;
-    int eyesRemaining = 3;
+    [Header ("Game Objects")]
     [SerializeField] List<BossEye> eyes;
     [SerializeField] GameObject treasure;
     [SerializeField] GameManager gm;
 
+    // Don't want boss active on init
+    bool active = false;
+    // once it has no eyes it dies
+    int eyesRemaining = 3;
+
+    // Boss Follows three firing patterns dependant on remaining eyes
     enum FirePattern {fire1, fire2, fire3};
+    // current firing pattern set to the first on creation
     FirePattern firing = FirePattern.fire1;
+    // timer used for spacing attacks
     float timer = 0f;
+    // currently firing eye
     int activeEye = 0;
     
 
@@ -20,6 +28,7 @@ public class Boss : MonoBehaviour
         if(active){
             timer += Time.deltaTime;
         
+            // 3 different firing patterns
             switch (firing) {
                 case FirePattern.fire1:
                     FirePattern1();
@@ -34,10 +43,14 @@ public class Boss : MonoBehaviour
         }   
     }
 
+    // set the boss active remotely (from trigger)
     public void Activate() {
         active = true;
     }
 
+    // 3 remaining eyes (full health)
+    // first pattern fires projectiles towards player once every 3 seconds
+    // changes active eye after each shot
     void FirePattern1() {
         if (timer > 3) {
             eyes[activeEye].Fire();
@@ -51,6 +64,9 @@ public class Boss : MonoBehaviour
         }
     }
 
+    // 2 remaining eyes
+    // second patter fires three projectiles towards player in succession
+    // fires every 2 seconds, alternates eyes
     void FirePattern2() {
         if (timer > 2) {
             eyes[activeEye].Fire();
@@ -66,6 +82,9 @@ public class Boss : MonoBehaviour
         }
     }
 
+    // 1 remaining eye
+    // fires a quick burst of projectiles consistently in a short time frame
+    // only remaining eye fires
     void FirePattern3() {
         if (timer > 0.5f) {
             eyes[0].Fire();

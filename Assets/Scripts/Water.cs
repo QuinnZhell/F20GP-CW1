@@ -11,6 +11,7 @@ public class Water : MonoBehaviour
         audioManager = Object.FindObjectOfType<AudioManager>();
     }
 
+    // if player enters, they will be set to swimming
     private void OnTriggerEnter(Collider other) {
         if(other.tag == "Player") {
             player.StartSwimming();
@@ -18,6 +19,7 @@ public class Water : MonoBehaviour
         }
     }
 
+    // if the player exits, they will be set to walking
     private void OnTriggerExit(Collider other) {
         if(other.tag == "Player") {
             player.StartWalking();

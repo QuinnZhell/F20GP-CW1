@@ -32,14 +32,17 @@ using UnityEngine;
         obstacle_mask = LayerMask.GetMask("Obstacle");
     }
 
+    // set the shoal this fish belongs sto
     public void SetShoal(Shoal s) {
         shoal = s;
     }
 
+    // set its initial speed
     public void InitializeSpeed(float speed){
         this.speed = speed;
     }
 
+    // set the radius it will check for flock members
     public void SetSphereCastRadius(float s) {
         SphereCastRadius = s;
     }
@@ -57,17 +60,14 @@ using UnityEngine;
         // calculate the direction to swim
         Vector3 moveVector;
 
+        // raycast to check that the fish is not moving into an obstacle
         if(Physics.Raycast(fishTransform.position, fishTransform.forward, 2.5f, obstacle_mask)) {
-            //Debug.Log("Something in way");
-            //Debug.DrawRay(transform.position, fishTransform.forward * 2.5f, Color.green ,3f);
             moveVector = AvoidObstacle();
         } else {
+            // get a move vector from the steering components, move in that direction
             moveVector = cohesion + alignment + avoidance;
-            //Debug.Log("Move Vector: " + moveVector);
             moveVector = Vector3.SmoothDamp(fishTransform.forward, moveVector, ref currentVelocity, SmoothDamp);
-            //Debug.Log("Move Vector Dampened: " + moveVector);
             moveVector = moveVector.normalized * speed;
-            //Debug.Log("Final: " + moveVector);
         }
 
         // turn fish towards direction and move 
@@ -76,6 +76,7 @@ using UnityEngine;
         fishTransform.position += moveVector * Time.deltaTime;
     }
 
+    // find alternate paths to get around objects
     private Vector3 AvoidObstacle() {
         for(int i = 0; i < altDirections.Length; i++) {
             Vector3 vec = fishTransform.InverseTransformDirection(altDirections[i]);
@@ -101,14 +102,20 @@ using UnityEngine;
         alignNeighbours.Clear();
         avoidNeighbours.Clear();
 
+        // gather information on nearby fish
         RaycastHit[] hit = Physics.SphereCastAll(fishTransform.position, SphereCastRadius, fishTransform.forward, 0, fish_mask);
         for(int i = 0; i < hit.Length; i++) {
             float distance = Vector3.SqrMagnitude(hit[i].transform.position - fishTransform.position);
 
+            // if within cohesion distance
             if(distance <= shoal.getCohesion * shoal.getCohesion)
                 cohesionNeighbours.Add(hit[i].collider.GetComponent<Fish>());
+
+            // if within alignment distance
             if(distance <= shoal.getAlignment * shoal.getAlignment)
                 alignNeighbours.Add(hit[i].collider.GetComponent<Fish>());
+
+            // if within avoidance distance
             if(distance <= shoal.getAvoidance * shoal.getAvoidance)
                 avoidNeighbours.Add(hit[i].collider.GetComponent<Fish>());
         }
@@ -151,11 +158,15 @@ using UnityEngine;
         if(cohesionNeighbours.Count == 0)
             return cohesion;
 
+        // get the sum of all fish to be considered in cohesion
         for(int i = 0; i < cohesionNeighbours.Count; i++)
             cohesion += cohesionNeighbours[i].fishTransform.position;
         
+        // get the average
         cohesion /= cohesionNeighbours.Count;
+        // remove the fishes own influence
         cohesion -= fishTransform.position;
+        // change magnitude
         cohesion = Vector3.Normalize(cohesion);
 
         return cohesion;
@@ -173,11 +184,14 @@ using UnityEngine;
         if(alignNeighbours.Count == 0)
             return alignment;
 
+        // get the sum of the align members directions
         for (int i = 0; i < alignNeighbours.Count; i++) {
             alignment += alignNeighbours[i].fishTransform.forward;
         }
 
+        // get average
         alignment /= alignNeighbours.Count;
+        // remove own influence
         alignment = alignment.normalized;
         return alignment;
     }
@@ -193,10 +207,13 @@ using UnityEngine;
         if(avoidNeighbours.Count == 0)
             return avoid;
 
+        // get the sum of distance between nearby fish members and itself
         for (int i = 0; i < avoidNeighbours.Count; i++) 
             avoid += (fishTransform.position - avoidNeighbours[i].fishTransform.position);
 
+        // get the average avoidance distance
         avoid /= avoidNeighbours.Count;
+        // normalize to reduce magnitude
         avoid = avoid.normalized;
         return avoid;
     }

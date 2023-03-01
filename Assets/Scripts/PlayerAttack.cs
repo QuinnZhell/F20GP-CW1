@@ -25,9 +25,12 @@ public class PlayerAttack : MonoBehaviour
     IEnumerator Attack(){
         attacking = true;
 
+        // this will prevent "spam" attacks
         StartCoroutine(AttackAnimate());
         
         RaycastHit hit;
+
+        // use a spherecast to determine if a shark is in range of the attack, if so trigger its hurt behaviour
         if(Physics.SphereCast(player.transform.position, 1, player.transform.forward, out hit, 1.25f)) {
             switch(hit.collider.tag) {
                 case "Shark":
