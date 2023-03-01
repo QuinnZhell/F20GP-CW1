@@ -14,6 +14,7 @@ public class PlayerCamera : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.Locked;
         changeInversion(false);
+        transform.localRotation = Quaternion.Euler(0f, 0f, 0f);
     }
 
     // Update is called once per frame
@@ -35,7 +36,7 @@ public class PlayerCamera : MonoBehaviour
 
         // clamp the rotation to prevent the player from looked too far up or down
         xRotate += mouseY * inverted;
-        xRotate = Mathf.Clamp(xRotate, -135.0f, 135.0f);
+        xRotate = Mathf.Clamp(xRotate, -90.0f, 90.0f);
 
         // rotate camera and body
         transform.localRotation = Quaternion.Euler(xRotate, 0f, 0f);
