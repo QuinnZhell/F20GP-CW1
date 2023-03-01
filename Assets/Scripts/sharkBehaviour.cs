@@ -12,6 +12,10 @@ public class sharkBehaviour : MonoBehaviour
     public LayerMask playerMask;
     private GameManager gameManager;
 
+    [SerializeField] GameObject model;
+    [SerializeField] Material material;
+    [SerializeField] Color materialColor;
+
     private float distanceToPlayer;
 
     private float defaultBaseOffset;
@@ -47,7 +51,6 @@ public class sharkBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
         distanceToPlayer = Vector3.Distance(player.position, agent.transform.position);
 
         // remove triggers when far away
@@ -142,6 +145,11 @@ public class sharkBehaviour : MonoBehaviour
         Vector3 playerDirection = (player.position - agentPosition).normalized;
         
         agent.SetDestination(-playerDirection * minSpottedDistance * evadeDistanceMultiplier);
+    }
+
+    public void Hurt() {
+        Debug.Log("shark says ouch");
+        Evade();
     }
 
     bool RandomPoint(float range, out Vector3 result)
