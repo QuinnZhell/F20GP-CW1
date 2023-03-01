@@ -44,11 +44,6 @@ public class PlayerAttack : MonoBehaviour
         attacking = false;
     }
 
-    private void OnDrawGizmosSelected() {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(player.transform.position + player.transform.forward * 1.25f, 1);
-    }
-
     // Displays a visual indicator of the players attack radius
     IEnumerator AttackAnimate() {
         // create the indicator then remove after 0.25 seconds
