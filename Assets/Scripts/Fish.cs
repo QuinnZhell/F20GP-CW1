@@ -58,7 +58,7 @@ using UnityEngine;
         Vector3 moveVector;
 
         if(Physics.Raycast(fishTransform.position, fishTransform.forward, 2.5f, obstacle_mask)) {
-            Debug.Log("Something in way");
+            //Debug.Log("Something in way");
             //Debug.DrawRay(transform.position, fishTransform.forward * 2.5f, Color.green ,3f);
             moveVector = AvoidObstacle();
         } else {
@@ -79,10 +79,10 @@ using UnityEngine;
     private Vector3 AvoidObstacle() {
         for(int i = 0; i < altDirections.Length; i++) {
             Vector3 vec = fishTransform.InverseTransformDirection(altDirections[i]);
-            Debug.Log("Trying: " + altDirections[i] + " , " + vec);
-            Debug.DrawRay(transform.position, fishTransform.forward, Color.green ,3f);
+            //Debug.Log("Trying: " + altDirections[i] + " , " + vec);
+            //Debug.DrawRay(transform.position, fishTransform.forward, Color.green ,3f);
             if(!Physics.Raycast(fishTransform.position, vec, 2.5f, obstacle_mask)){
-                Debug.Log("Path found!");
+                //Debug.Log("Path found!");
                 return vec;
             }
                 
