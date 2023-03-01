@@ -32,8 +32,9 @@ public class GameManager : MonoBehaviour
 
     public void applyDamage(float damage) {
         currentHealth = currentHealth - damage;
+        UI.SetHealth((int)(currentHealth > 0 ? currentHealth : 0));
+
         if (currentHealth < 0) {
-            currentHealth = 0;
             Death();
         } 
     }
