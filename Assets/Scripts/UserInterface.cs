@@ -7,6 +7,7 @@ public class UserInterface : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI prompt;
     [SerializeField] private TextMeshProUGUI treasureText;
+    [SerializeField] private TextMeshProUGUI healthText;
 
     private void Awake() {
         FindAnyObjectByType<GameManager>().SetActiveUI(this);
@@ -29,6 +30,10 @@ public class UserInterface : MonoBehaviour
     }
 
     public void TreasureCollect(int count) {
-        treasureText.text = "Treasure Collected: " + count + "/ 5";
+        treasureText.text = count + "/5";
+    }
+
+    public void SetHealth(int health) {
+        healthText.text = health.ToString();
     }
 }
